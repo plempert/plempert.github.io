@@ -116,6 +116,16 @@ document.getElementById("toggle-list-view").addEventListener("click", () => {
 })
 
 document.getElementById("search-by-user-location").addEventListener("click", () => {
+    var options = {
+      enableHighAccuracy: true,
+      timeout: 5000,
+      maximumAge: 0
+    };
+    
+    function error(err) {
+      console.warn(`ERROR(${err.code}): ${err.message}`);
+    }
+    
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(pos => {
             
@@ -127,7 +137,7 @@ document.getElementById("search-by-user-location").addEventListener("click", () 
             console.log(url);
             httpGetAsync(url, addMarkersAndFillRestaurantsTable);
             
-        });
+        }, error, options);
       } else {
         console.log("Geolocation is not supported by this browser.");
       }
