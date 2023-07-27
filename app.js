@@ -80,6 +80,8 @@ function showViolations(camis) {
         document.getElementById("restaurant-name").innerHTML = `<h2>${arr[0].dba}</h2>`
         document.getElementById("restaurant-name").classList.remove('d-none');
         document.getElementById("violations").classList.remove('d-none');
+        var el = document.getElementById('restaurant-name');
+        el.scrollIntoView({behavior: "smooth", block: "start", inline: "nearest"});
     });
 }
 
