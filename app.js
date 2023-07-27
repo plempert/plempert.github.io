@@ -148,3 +148,16 @@ document.getElementById("search-by-user-location").addEventListener("click", () 
         console.log("Geolocation is not supported by this browser.");
       }
 })
+
+document.getElementById("search-by-map-area").addEventListener("click", () => {
+    let center = map.getCenter()
+    let offset = 3.0 / 1000.0;
+    let lat = center.lat
+    let lon = center.lng
+    console.log(`lat=${lat} lon=${lon}`);
+    var url = `https://data.cityofnewyork.us/resource/43nn-pn8j.json?$where=latitude>${lat-offset} and latitude<${lat+offset} and longitude>${lon-offset} and longitude<${lon+offset}`;
+    console.log(url);
+    httpGetAsync(url, addMarkersAndFillRestaurantsTable);
+    
+})
+
