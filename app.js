@@ -73,7 +73,7 @@ function showViolations(camis) {
 document.getElementById("submit").addEventListener("click", function(){
     var buildingNumber = document.getElementById("building_number");
     console.log(buildingNumber.value);
-    var url = "https://data.cityofnewyork.us/resource/43nn-pn8j.json?$$app_token=0SuJbkbKpuUkMK0Ro5uzQbEV0&$where=building like '"+buildingNumber.value+"'"
+    var url = "https://data.cityofnewyork.us/resource/43nn-pn8j.json?$where=building like '"+buildingNumber.value+"'"
     console.log(url)
     httpGetAsync(url, (res) => {
         var arr = JSON.parse(res);
