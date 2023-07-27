@@ -7,7 +7,7 @@ var markers = []
 
 // Set up the OSM layer
 L.tileLayer(
-  'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+  'https://a.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     maxZoom: 18
   }).addTo(map);
 
