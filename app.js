@@ -67,8 +67,9 @@ function showViolations(camis) {
         console.log(arr)
         arr.sort((a, b) => a.inspection_date < b.inspection_date)
         const tableData = arr.map(elem => {
-          return (
-            `<tr>
+            let tr = ['rats','roaches','mice'].some(r => elem.violation_description.indexOf(r)>=0) ? "<tr class='table-danger'>" : "<tr>"
+            return (
+            `${tr}
                <td class="nowrap">${elem.inspection_date.slice(0, 10)}</td>
                <td>${elem.violation_description}</td>
             </tr>`
