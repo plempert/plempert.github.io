@@ -1,0 +1,78 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXFileReference section */
+		196DB95C2A72C0A400353009 /* styles.css */ = {isa = PBXFileReference; lastKnownFileType = text.css; path = styles.css; sourceTree = "<group>"; };
+		196DB95D2A72C0A400353009 /* index.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = index.html; sourceTree = "<group>"; };
+		196DB95E2A72C0A400353009 /* app.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = app.js; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXGroup section */
+		196DB9552A72C08D00353009 = {
+			isa = PBXGroup;
+			children = (
+				196DB95E2A72C0A400353009 /* app.js */,
+				196DB95D2A72C0A400353009 /* index.html */,
+				196DB95C2A72C0A400353009 /* styles.css */,
+			);
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXProject section */
+		196DB9562A72C08D00353009 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastUpgradeCheck = 1420;
+			};
+			buildConfigurationList = 196DB9592A72C08D00353009 /* Build configuration list for PBXProject "food-grades-web-app" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 196DB9552A72C08D00353009;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+			);
+		};
+/* End PBXProject section */
+
+/* Begin XCBuildConfiguration section */
+		196DB95A2A72C08D00353009 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+			};
+			name = Debug;
+		};
+		196DB95B2A72C08D00353009 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		196DB9592A72C08D00353009 /* Build configuration list for PBXProject "food-grades-web-app" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				196DB95A2A72C08D00353009 /* Debug */,
+				196DB95B2A72C08D00353009 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 196DB9562A72C08D00353009 /* Project object */;
+}

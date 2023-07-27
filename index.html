@@ -1,0 +1,66 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+          integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+          crossorigin=""/>
+        
+        <link rel="stylesheet" type="text/css" href="styles.css" />
+        
+        
+        
+        
+    </head>
+    
+    <body>
+        <div class="container">
+        <div id="banner" class="text-center my-4">
+            <h1>NYC Food Grades</h1>
+        </div>
+        <div class="input-group">
+        <input id="building_number" type="text" placeholder="Enter a building number" class="form-control">
+            <div class="input-group-append">
+                <input id="submit" type="submit" value="Search" class="btn btn-primary">
+            </div>
+        </div>
+        <div class="btn-group d-flex mt-4" role="group" aria-label="Basic example">
+          <button id="toggle-map-view" type="button" class="btn btn-secondary w-100">Map View</button>
+          <button id="toggle-list-view" type="button" class="btn btn-secondary w-100">List View</button>
+        </div>
+        
+        
+        <div id="map-view"></div>
+        <div id="list-view" class="d-none">
+            <table class="table table-bordered table-responsive" id="restaurants">
+              <thead class="thead-dark">
+                <tr>
+                  <th scope="col">name</th>
+                  <th scope="col">address</th>
+                  <th scope="col">view</th>
+                </tr>
+              </thead>
+              <tbody id="restaurants-table-body"></tbody>
+            </table>
+        </div>
+        
+        <div class="text-center my-1 d-none" id="restaurant-name"></div>
+        <table class="table table-bordered d-none" id="violations">
+          <thead class="thead-dark">
+            <tr>
+              <th scope="col">date</th>
+              <th scope="col">violation</th>
+            </tr>
+          </thead>
+          <tbody id="tableBody"></tbody>
+        </table>
+        
+        <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+            integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+            crossorigin=""></script>
+        <script src="app.js"></script>
+        </div>
+    </body>
+</html>

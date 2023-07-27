@@ -1,0 +1,12 @@
+#map-view { height: 300px; }
+.table-responsive {
+    max-height:300px;
+}
+.nowrap {
+    white-space: nowrap;
+}
+body {background-color: #E2E1E1;}
+* {
+ font-family: sans-serif;
+}
+
