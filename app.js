@@ -3,6 +3,7 @@ var center = [40.712, -74.006];
 
 // Create the map
 var map = L.map('map-view').setView(center, 10);
+var markers = []
 
 // Set up the OSM layer
 L.tileLayer(
@@ -22,12 +23,23 @@ function httpGetAsync(theUrl, callback)
 }
 
 function addMarkers(restaurants) {
+    markers.forEach(marker => {
+        map.removeLayer(marker);
+    })
+    markers = []
     
     restaurants.forEach(elem => {
         var popupContent = `<b>${elem.dba}</b><input class='btn btn-secondary btn-sm ml-4' id='view' type='submit' value='View' onclick='showViolations(${elem.camis})'>`;
         console.log(popupContent);
-        L.marker([elem.latitude, elem.longitude]).addTo(map).bindPopup(popupContent);
+        
+        var marker = L.marker([elem.latitude, elem.longitude])
+        marker.addTo(map).bindPopup(popupContent);
+        markers.push(marker)
     })
+    let arrayOfLatLngs = restaurants.map(elem => {
+        return [elem.latitude, elem.longitude]
+    })
+    map.fitBounds(arrayOfLatLngs)
 }
 
 function fillRestaurantsTable(restaurants) {
@@ -69,27 +81,29 @@ function showViolations(camis) {
     });
 }
 
+function addMarkersAndFillRestaurantsTable(res){
+    var arr = JSON.parse(res);
+    var map = new Map();
+    arr.forEach(elem => {
+        if (!map.has(elem.camis) && elem.inspection_date.slice(0,10)!='1900-01-01') {
+            map.set(elem.camis, elem)
+            console.log(elem)
+        }
+    });
+    let restaurants = Array.from(map.values());
+    console.log(restaurants)
+    addMarkers(restaurants)
+    fillRestaurantsTable(restaurants)
+}
+
 
 document.getElementById("submit").addEventListener("click", function(){
     var buildingNumber = document.getElementById("building_number");
     console.log(buildingNumber.value);
     var url = "https://data.cityofnewyork.us/resource/43nn-pn8j.json?$where=building like '"+buildingNumber.value+"'"
     console.log(url)
-    httpGetAsync(url, (res) => {
-        var arr = JSON.parse(res);
-        var map = new Map();
-        arr.forEach(elem => {
-            if (!map.has(elem.camis) && elem.inspection_date.slice(0,10)!='1900-01-01') {
-                map.set(elem.camis, elem)
-                console.log(elem)
-            }
-        });
-        let restaurants = Array.from(map.values());
-        console.log(restaurants)
-        addMarkers(restaurants)
-        fillRestaurantsTable(restaurants)
-    });
-}, false)
+    httpGetAsync(url, addMarkersAndFillRestaurantsTable);
+})
 
 document.getElementById("toggle-map-view").addEventListener("click", () => {
     document.getElementById("map-view").classList.remove('d-none');
@@ -99,4 +113,22 @@ document.getElementById("toggle-map-view").addEventListener("click", () => {
 document.getElementById("toggle-list-view").addEventListener("click", () => {
     document.getElementById("map-view").classList.add('d-none');
     document.getElementById("list-view").classList.remove('d-none');
+})
+
+document.getElementById("search-by-user-location").addEventListener("click", () => {
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(pos => {
+            
+            let offset = 3.0 / 1000.0;
+            let lat = pos.coords.latitude;
+            let lon = pos.coords.longitude;
+            console.log(`lat=${lat} lon=${lon}`);
+            var url = `https://data.cityofnewyork.us/resource/43nn-pn8j.json?$where=latitude>${lat-offset} and latitude<${lat+offset} and longitude>${lon-offset} and longitude<${lon+offset}`;
+            console.log(url);
+            httpGetAsync(url, addMarkersAndFillRestaurantsTable);
+            
+        });
+      } else {
+        console.log("Geolocation is not supported by this browser.");
+      }
 })
