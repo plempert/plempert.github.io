@@ -11,6 +11,8 @@ L.tileLayer(
     maxZoom: 18
   }).addTo(map);
 
+
+
 function httpGetAsync(theUrl, callback)
 {
     var xmlHttp = new XMLHttpRequest();
@@ -108,11 +110,13 @@ document.getElementById("submit").addEventListener("click", function(){
 document.getElementById("toggle-map-view").addEventListener("click", () => {
     document.getElementById("map-view").classList.remove('d-none');
     document.getElementById("list-view").classList.add('d-none');
+    map.invalidateSize()
 })
 
 document.getElementById("toggle-list-view").addEventListener("click", () => {
     document.getElementById("map-view").classList.add('d-none');
     document.getElementById("list-view").classList.remove('d-none');
+    map.invalidateSize()
 })
 
 document.getElementById("search-by-user-location").addEventListener("click", () => {
